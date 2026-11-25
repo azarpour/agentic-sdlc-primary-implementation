@@ -1,0 +1,4 @@
+{
+  "scenario": "ambiguous",
+  "requirement": "Make short links expire sooner. Ask for default lifetime, maximum lifetime and whether existing links are affected before implementation."
+}

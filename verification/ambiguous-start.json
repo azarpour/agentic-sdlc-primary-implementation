@@ -1,0 +1,39 @@
+{
+    "run_id":  "8d1b7e06-0e17-4e31-852c-4fb723fc2d60",
+    "state":  {
+                  "run_id":  "8d1b7e06-0e17-4e31-852c-4fb723fc2d60",
+                  "requirement":  "Make short links expire sooner. Ask for default lifetime, maximum lifetime and whether existing links are affected before implementation.",
+                  "scenario":  "ambiguous",
+                  "requirements":  {
+                                       "summary":  "Requirement: make short links expire sooner. Current behavior in the scaffold (Spring Boot 3.4.5, Java 21, Postgres via Flyway, Redis available): POST /api/v1/urls accepts an optional client-supplied expiresAt (must be in the future). If omitted, expires_at is NULL and the link never expires. The redirect endpoint (GET /{code}) serves only rows where active and (expires_at is null or expires_at\u003enow()). The links table has expires_at timestamptz (nullable), active, and clicks columns. The requirement explicitly instructs asking the user for three decisions before implementation: default lifetime, maximum lifetime, and whether existing links are affected. No answers have been supplied in the provided state, so these remain unresolved and block safe implementation. Each materially affects acceptance criteria: the default determines expires_at for links created without expiresAt, the maximum determines validation and rejection of too-distant expiresAt values, and the existing-link decision determines whether a data migration (e.g. backfilling expires_at for NULL or long-dated rows) is needed, which is potentially destructive and irreversible for live links. Nothing is invented beyond these; no values are assumed for them.",
+                                       "ambiguities":  [
+                                                           "What is the default lifetime applied to newly created links when the client does not supply expiresAt (e.g. a duration such as 7 days, 30 days)?",
+                                                           "What is the maximum allowed lifetime, and how should a request with expiresAt beyond it be handled (reject with 400 or clamp to the maximum)?",
+                                                           "Are existing links affected? If yes, how: backfill expires_at for rows where it is NULL or exceeds the new maximum, and measured from what point (creation time is not stored in the links table, so from migration time or another reference)? If no, apply the new rules only to links created after deployment."
+                                                       ],
+                                       "acceptance":  [
+                                                          "Implementation does not begin until the default lifetime, maximum lifetime, and existing-link handling have been answered by the user.",
+                                                          "Once answered: a link created via POST /api/v1/urls without expiresAt is stored with expires_at equal to creation time plus the confirmed default lifetime.",
+                                                          "Once answered: a request whose expiresAt exceeds the confirmed maximum lifetime is handled per the confirmed policy (reject with HTTP 400 or clamp), covered by an automated test.",
+                                                          "Once answered: a request with an expiresAt in the past or now continues to return HTTP 400 Invalid expiration.",
+                                                          "Once answered: a link whose expires_at has passed returns HTTP 404 from GET /{code} and its click count does not increment.",
+                                                          "Once answered: existing links are either left unchanged (verified by test that pre-existing rows keep their expires_at) or updated via a new Flyway migration (V2 or later) exactly as the user specified, without modifying V1__links.sql.",
+                                                          "Existing ShortenerTest tests (acceptsHttps, rejectsUnsafeScheme, rejectsCredentials) continue to pass.",
+                                                          "Default and maximum lifetimes are configurable through application.yml properties rather than hard-coded, if the user confirms configurability; otherwise values are fixed as stated by the user."
+                                                      ]
+                                   },
+                  "version":  1,
+                  "replans":  0,
+                  "started":  1795642784.2095094
+              },
+    "interrupts":  [
+                       {
+                           "type":  "clarification",
+                           "questions":  [
+                                             "What is the default lifetime applied to newly created links when the client does not supply expiresAt (e.g. a duration such as 7 days, 30 days)?",
+                                             "What is the maximum allowed lifetime, and how should a request with expiresAt beyond it be handled (reject with 400 or clamp to the maximum)?",
+                                             "Are existing links affected? If yes, how: backfill expires_at for rows where it is NULL or exceeds the new maximum, and measured from what point (creation time is not stored in the links table, so from migration time or another reference)? If no, apply the new rules only to links created after deployment."
+                                         ]
+                       }
+                   ]
+}

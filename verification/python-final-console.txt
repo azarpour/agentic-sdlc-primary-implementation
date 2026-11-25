@@ -1,0 +1,6 @@
+Author-provided PowerShell console transcript (not independently executed by the audit environment):
+PS C:\Project\schwab-audited> docker start agentic-sdlc-final-orchestrator-1
+>> docker exec agentic-sdlc-final-orchestrator-1 python -m pytest /app/tests -q
+agentic-sdlc-final-orchestrator-1
+......................... [100%]
+25 passed in 1.53s

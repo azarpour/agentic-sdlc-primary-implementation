@@ -1,0 +1,11 @@
+# Recovery and upstream revision extension
+
+Generation uses atomic per-file checkpoints keyed by requirements, clarification, plan, design, baseline hash, target and preceding generated content. A bounded generation-resume edge retries both branches under the same approved design; completed batches are reused. Default MAX_GENERATION_RESUMES=1. Exhaustion falls back to the existing bounded replan path, which increments the generation epoch and invalidates cached output. This is conservative: changes to design or requirements never reuse old batches.
+
+At any human interrupt (clarification, design approval, external verification, release approval), submit `{"answer":{"revise_requirement":"New complete requirement text"}}` to POST /runs/{run_id}/resume. The graph archives the candidate and old test log, increments the revision and generation epoch, clears all downstream outputs and approvals, and restarts requirements analysis. The dependency closure is deliberately conservative (all downstream stages). A fresh design approval and validation are required. Revision shares MAX_REPLANS budget. Changes while agents are actively executing are not supported; wait for a checkpoint. Terminal runs cannot be revised; start a new run.
+
+## Evidence
+20 non-Graph Python tests passed locally, including a simulated provider failure proving that a successful batch is reused and a changed epoch invalidates it. Eight Graph tests are included (six previously passed on the user's original version; two new). All eight must be rerun against this revised source. LangGraph is unavailable in the authoring environment. No new live Claude run or Java execution was performed. Prior Java and live scenario evidence describes the earlier version; Greenfield remains historically human-assisted. This extension is not proof of a successful autonomous live Greenfield run.
+
+## Subsequent operator evidence
+The operator reported `28 passed` after the recovery revision test instructions. No full console transcript or independent environment verification was supplied. A later transcript showed the recovery directory was missing, so the subsequent live design attempt cannot establish that the revised code was loaded. That design was not approved. The revised full-scope Greenfield scenario remains unexecuted.

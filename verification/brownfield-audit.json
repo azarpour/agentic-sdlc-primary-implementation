@@ -1,0 +1,138 @@
+{
+    "value":  [
+                  {
+                      "timestamp":  1795641385.3535545,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "requirements",
+                      "version":  1,
+                      "inputs_hash":  "f9cf55fe96eb4f661cd1f7ee0405691899441b26d403c549ed2f98e1906013e1",
+                      "outputs_hash":  "c7c3335fdb7068b9685c321bb1bcdbaf47886de191309ee59a95c5ff104a2ae4",
+                      "actor":  "anthropic",
+                      "attempt":  0
+                  },
+                  {
+                      "timestamp":  1795641400.474324,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "plan",
+                      "version":  1,
+                      "inputs_hash":  "c2dbc04e3f9df99f97180e36075d2d58a420fe73742fc68b20021642bec77bc4",
+                      "outputs_hash":  "621a2fed0eb754dc53596d77e23d766717c60b096be207a976f7e41eab26833d",
+                      "actor":  "anthropic",
+                      "attempt":  0
+                  },
+                  {
+                      "timestamp":  1795641421.9811797,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "design",
+                      "version":  1,
+                      "inputs_hash":  "a9321a154456e36e7f7fa6e7ab304579e507192b2485c29b6bbd45f6f2be51fe",
+                      "outputs_hash":  "ef09b781501ba98b03834ef133fbf23a30bb509fc94caadf4386ac781c8ff9ed",
+                      "actor":  "anthropic",
+                      "attempt":  0
+                  },
+                  {
+                      "timestamp":  1795641465.4966733,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "design_approval",
+                      "version":  1,
+                      "inputs_hash":  "9f3940afc63d9ed95377782bb5b52315d9e83ad0f40f6b5ccaec6f62e3ba8ae1",
+                      "outputs_hash":  "3bfe094f82c972542779813ba75bc897113caf11d369ce278dbd16caeedfd891"
+                  },
+                  {
+                      "timestamp":  1795641467.982015,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "tests",
+                      "version":  1,
+                      "inputs_hash":  "b718adb9bb044ace57276401a9c8e38b7e9d0e39b867ae7b714373f1edf9fde8",
+                      "outputs_hash":  "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+                      "event":  "batch_started",
+                      "paths":  [
+                                    "src/test/java/demo/RateLimitRedisIT.java"
+                                ]
+                  },
+                  {
+                      "timestamp":  1795641508.2163873,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "tests",
+                      "version":  1,
+                      "inputs_hash":  "849ef2aa9b578b85932e03e59c11b9a6a87a7ebd6d933641ef705f3d9dc96bb6",
+                      "outputs_hash":  "14b2d7e22fbd74a37c3fb5363836d9aa73c1b6b5814e21adbf21f2fb72b76b80",
+                      "actor":  "anthropic",
+                      "attempt":  0
+                  },
+                  {
+                      "timestamp":  1795641508.3559182,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "tests",
+                      "version":  1,
+                      "inputs_hash":  "b718adb9bb044ace57276401a9c8e38b7e9d0e39b867ae7b714373f1edf9fde8",
+                      "outputs_hash":  "14b2d7e22fbd74a37c3fb5363836d9aa73c1b6b5814e21adbf21f2fb72b76b80",
+                      "event":  "batch_completed",
+                      "paths":  [
+                                    "src/test/java/demo/RateLimitRedisIT.java"
+                                ]
+                  },
+                  {
+                      "timestamp":  1795641514.5174425,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "verification",
+                      "version":  1,
+                      "inputs_hash":  "8d045a162864c9d0e0e2e231b9176354376e82686f64ac82401b7ea49e75a888",
+                      "outputs_hash":  "7e0b40f2e9f9d732a26faf2f9e5ad3b76d8adfb33fef57f26ca236511f5f6215",
+                      "gate":  "external_test_required"
+                  },
+                  {
+                      "timestamp":  1795642626.7184472,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "test_log_check",
+                      "version":  1,
+                      "inputs_hash":  "e7a0a32bd16d3f724bc0bb2fb8d4e542ec9aff9eaaf68f5dee56f54c502115fd",
+                      "outputs_hash":  "f99140a41152f820bfabb2dee3f0b0141312d8cb710c818899413063270143bd"
+                  },
+                  {
+                      "timestamp":  1795642629.970734,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "external_verification",
+                      "version":  1,
+                      "inputs_hash":  "e7a0a32bd16d3f724bc0bb2fb8d4e542ec9aff9eaaf68f5dee56f54c502115fd",
+                      "outputs_hash":  "5f58386f4eabfbae64262bc5ccfd044bde911beacfccf2828d01f35b9e1e657e"
+                  },
+                  {
+                      "timestamp":  1795642656.967214,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "review",
+                      "version":  1,
+                      "inputs_hash":  "2da2de140e4a2425342e7705a1c8bf4a711e6637a0396d9f3d8926785e257ce9",
+                      "outputs_hash":  "5c93b09b74b5dbee5236d863e6a42be20ade8e022e420459fb0d825d7e3a1a02",
+                      "actor":  "anthropic",
+                      "attempt":  0
+                  },
+                  {
+                      "timestamp":  1795642682.4488475,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "docs",
+                      "version":  1,
+                      "inputs_hash":  "530998dfc3b804ada27539fe9361912665866db318bd7f42cf91e884e7b8f628",
+                      "outputs_hash":  "6f81c229687ed01344cf4e10724846c1cb7ea50a271c7dc2962bc9a83c64c595",
+                      "actor":  "anthropic",
+                      "attempt":  0
+                  },
+                  {
+                      "timestamp":  1795642733.1062617,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "release_approval",
+                      "version":  1,
+                      "inputs_hash":  "ea2bfaffc1ac29501a9df93e6d413205e6acfe982b97660b418b5b19ba360f57",
+                      "outputs_hash":  "a86a0e9336caa93eddfd5e3195570177c9cf843fa3d66c9c003645e2096d063d"
+                  },
+                  {
+                      "timestamp":  1795642733.1313574,
+                      "run_id":  "0dae8850-00ce-4106-8908-9ddfb7a30741",
+                      "stage":  "terminal",
+                      "version":  1,
+                      "inputs_hash":  "e5d8e0c4b6cf071c8991599852ab681b684710d24fa7b3d218c2ff76ad03be77",
+                      "outputs_hash":  "92f4da7ca8b8458afbbb9633ede31bc551967569dc2c7658f316f9b2225a64cd"
+                  }
+              ],
+    "Count":  14
+}

@@ -1,0 +1,40 @@
+{
+    "run_id":  "94e9c2a1-7ac5-44f9-b1e5-46e10a0debd4",
+    "state":  {
+                  "run_id":  "94e9c2a1-7ac5-44f9-b1e5-46e10a0debd4",
+                  "requirement":  "Make short links expire sooner. Ask for default lifetime, maximum lifetime and whether existing links are affected before implementation.",
+                  "scenario":  "ambiguous",
+                  "requirements":  {
+                                       "summary":  "The requirement is to make short links expire sooner. The current code has no default or maximum link lifetime: expiresAt is optional on POST /api/v1/urls, null means the link never expires, and ExpirationPolicy only checks that a supplied expiresAt is in the future. Making links expire sooner therefore means introducing a default lifetime (applied when expiresAt is omitted) and possibly a maximum lifetime (a cap on a supplied expiresAt). The requirement explicitly says to ask for three decisions before implementation: the default lifetime, the maximum lifetime, and whether existing links are affected. No answers were provided, so all three are blocking and no value is assumed. Constraints to preserve: existing API contracts (201 {code, shortPath}, 302 redirect, 404 for expired, analytics), idempotency semantics (the payload hash is computed from url, alias and expiresAt, so applying a default must not break replay or 409 behavior), the Redis cache TTL bounded by time to expiry, and existing tests left unmodified with new focused test files added. Once clarified, the likely design is configuration under the shortener.* properties validated as positive durations, enforcement in ExpirationPolicy and UrlService.create, and, only if existing links are in scope, a Flyway migration with a new Vxx file. Existing Flyway files must not be edited.",
+                                       "ambiguities":  [
+                                                           "Default lifetime: what duration should be applied when a create request omits expiresAt (for example 24h, 7d or 30d)? Currently omitted means never expires.",
+                                                           "Maximum lifetime: what is the maximum allowed time between creation and expiresAt, and should a request exceeding it be rejected with 400 or silently clamped to the maximum? Is a maximum needed at all, or only a default?",
+                                                           "Existing links: should links already stored (including those with expires_at NULL or a far-future expires_at) be changed, for example by a migration that caps or backfills expires_at, or should the new rules apply only to links created after deployment?"
+                                                       ],
+                                       "acceptance":  [
+                                                          "Blocked until the three clarifications are answered; the concrete numeric values below are placeholders to be filled from the user\u0027s answers.",
+                                                          "A create request without expiresAt produces a link whose stored expires_at equals creation time plus the confirmed default lifetime, and the link redirects with 302 before that instant and returns 404 at or after it.",
+                                                          "A create request with expiresAt later than creation time plus the confirmed maximum lifetime is handled exactly as the user decides (400 with a clear message, or clamped), with a unit test for the boundary: exactly at the maximum is accepted and one nanosecond beyond it is handled per that decision.",
+                                                          "A create request with a valid expiresAt within the maximum behaves as before; past or equal-to-now values still return 400.",
+                                                          "Default and maximum lifetimes are configurable under shortener.* in application.yml, validated as positive durations, and the default must not exceed the maximum.",
+                                                          "Existing links: if unaffected, no migration is added and a test shows pre-existing rows keep their expires_at. If affected, a new Flyway migration (never edit V1 or V2) applies the confirmed rule and is covered by an integration test.",
+                                                          "Idempotency is preserved: a replay with the same Idempotency-Key and same payload returns the original code with 201, a different payload still returns 409, and applying the default does not change the payload hash computed from the request fields.",
+                                                          "Redis cache TTL remains min(cache.ttl, time to expiry) and expired links are not served from cache.",
+                                                          "Existing tests are unmodified and pass; new behavior is covered by new, separate test files."
+                                                      ]
+                                   },
+                  "version":  1,
+                  "replans":  0,
+                  "started":  1795643394.9129703
+              },
+    "interrupts":  [
+                       {
+                           "type":  "clarification",
+                           "questions":  [
+                                             "Default lifetime: what duration should be applied when a create request omits expiresAt (for example 24h, 7d or 30d)? Currently omitted means never expires.",
+                                             "Maximum lifetime: what is the maximum allowed time between creation and expiresAt, and should a request exceeding it be rejected with 400 or silently clamped to the maximum? Is a maximum needed at all, or only a default?",
+                                             "Existing links: should links already stored (including those with expires_at NULL or a far-future expires_at) be changed, for example by a migration that caps or backfills expires_at, or should the new rules apply only to links created after deployment?"
+                                         ]
+                       }
+                   ]
+}

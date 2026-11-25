@@ -1,0 +1,4 @@
+{
+  "scenario": "brownfield",
+  "requirement": "Add a new Redis Testcontainers integration test for rate limit rejection, expiration and recovery. Preserve all production files and existing tests. This is a test-only change; list only the new test path."
+}

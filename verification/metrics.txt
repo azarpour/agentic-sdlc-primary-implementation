@@ -1,0 +1,119 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 1302.0
+python_gc_objects_collected_total{generation="1"} 248.0
+python_gc_objects_collected_total{generation="2"} 40.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 592.0
+python_gc_collections_total{generation="1"} 53.0
+python_gc_collections_total{generation="2"} 4.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="16",version="3.12.16"} 1.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 4.52190208e+08
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 1.58527488e+08
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.79564261821e+09
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 4.57
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 13.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1.048576e+06
+# HELP agent_provider_attempts_total Provider attempts
+# TYPE agent_provider_attempts_total counter
+agent_provider_attempts_total{provider="anthropic",stage="review"} 1.0
+agent_provider_attempts_total{provider="anthropic",stage="docs"} 1.0
+# HELP agent_provider_attempts_created Provider attempts
+# TYPE agent_provider_attempts_created gauge
+agent_provider_attempts_created{provider="anthropic",stage="review"} 1.7956426365743735e+09
+agent_provider_attempts_created{provider="anthropic",stage="docs"} 1.7956426600704567e+09
+# HELP agent_retries_total Retries
+# TYPE agent_retries_total counter
+agent_retries_total 0.0
+# HELP agent_retries_created Retries
+# TYPE agent_retries_created gauge
+agent_retries_created 1.795642621151127e+09
+# HELP agent_fallbacks_total Provider fallback
+# TYPE agent_fallbacks_total counter
+agent_fallbacks_total 0.0
+# HELP agent_fallbacks_created Provider fallback
+# TYPE agent_fallbacks_created gauge
+agent_fallbacks_created 1.7956426211511517e+09
+# HELP workflow_rollbacks_total Candidate rollbacks
+# TYPE workflow_rollbacks_total counter
+workflow_rollbacks_total 0.0
+# HELP workflow_rollbacks_created Candidate rollbacks
+# TYPE workflow_rollbacks_created gauge
+workflow_rollbacks_created 1.7956426211511672e+09
+# HELP workflow_replans_total Replans
+# TYPE workflow_replans_total counter
+workflow_replans_total 0.0
+# HELP workflow_replans_created Replans
+# TYPE workflow_replans_created gauge
+workflow_replans_created 1.795642621151182e+09
+# HELP workflow_outcomes_total Terminal outcomes
+# TYPE workflow_outcomes_total counter
+workflow_outcomes_total{status="release_ready"} 1.0
+# HELP workflow_outcomes_created Terminal outcomes
+# TYPE workflow_outcomes_created gauge
+workflow_outcomes_created{status="release_ready"} 1.79564273312046e+09
+# HELP workflow_duration_seconds Wall clock duration
+# TYPE workflow_duration_seconds histogram
+workflow_duration_seconds_bucket{le="0.005"} 0.0
+workflow_duration_seconds_bucket{le="0.01"} 0.0
+workflow_duration_seconds_bucket{le="0.025"} 0.0
+workflow_duration_seconds_bucket{le="0.05"} 0.0
+workflow_duration_seconds_bucket{le="0.075"} 0.0
+workflow_duration_seconds_bucket{le="0.1"} 0.0
+workflow_duration_seconds_bucket{le="0.25"} 0.0
+workflow_duration_seconds_bucket{le="0.5"} 0.0
+workflow_duration_seconds_bucket{le="0.75"} 0.0
+workflow_duration_seconds_bucket{le="1.0"} 0.0
+workflow_duration_seconds_bucket{le="2.5"} 0.0
+workflow_duration_seconds_bucket{le="5.0"} 0.0
+workflow_duration_seconds_bucket{le="7.5"} 0.0
+workflow_duration_seconds_bucket{le="10.0"} 0.0
+workflow_duration_seconds_bucket{le="+Inf"} 1.0
+workflow_duration_seconds_count 1.0
+workflow_duration_seconds_sum 1372.463790178299
+# HELP workflow_duration_seconds_created Wall clock duration
+# TYPE workflow_duration_seconds_created gauge
+workflow_duration_seconds_created 1.7956426211512382e+09
+# HELP workflow_recovery_seconds Time to successful recovery
+# TYPE workflow_recovery_seconds histogram
+workflow_recovery_seconds_bucket{le="0.005"} 0.0
+workflow_recovery_seconds_bucket{le="0.01"} 0.0
+workflow_recovery_seconds_bucket{le="0.025"} 0.0
+workflow_recovery_seconds_bucket{le="0.05"} 0.0
+workflow_recovery_seconds_bucket{le="0.075"} 0.0
+workflow_recovery_seconds_bucket{le="0.1"} 0.0
+workflow_recovery_seconds_bucket{le="0.25"} 0.0
+workflow_recovery_seconds_bucket{le="0.5"} 0.0
+workflow_recovery_seconds_bucket{le="0.75"} 0.0
+workflow_recovery_seconds_bucket{le="1.0"} 0.0
+workflow_recovery_seconds_bucket{le="2.5"} 0.0
+workflow_recovery_seconds_bucket{le="5.0"} 0.0
+workflow_recovery_seconds_bucket{le="7.5"} 0.0
+workflow_recovery_seconds_bucket{le="10.0"} 0.0
+workflow_recovery_seconds_bucket{le="+Inf"} 0.0
+workflow_recovery_seconds_count 0.0
+workflow_recovery_seconds_sum 0.0
+# HELP workflow_recovery_seconds_created Time to successful recovery
+# TYPE workflow_recovery_seconds_created gauge
+workflow_recovery_seconds_created 1.7956426211513245e+09
+

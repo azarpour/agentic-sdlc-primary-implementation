@@ -1,0 +1,2 @@
+# Reference implementation (not an executed agent output)
+This optional human/AI-authored test-only patch addresses the recorded Brownfield design. It is not the output of the pending live run and has not been compiled or executed here. Copy the new test into a disposable copy of the verified baseline and run `mvn -B clean verify`; repeat the new IT three times with `mvn -B -Dit.test=RateLimiterRedisIT verify`. Do not overwrite the verified baseline or represent this reference as a completed agent run.
