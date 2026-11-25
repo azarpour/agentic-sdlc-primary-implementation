@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/shortener}
+    username: ${DB_USER:demo}
+    password: ${DB_PASSWORD:demo}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      timeout: 300ms
+      connect-timeout: 300ms
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+shortener:
+  reserved-aliases:
+    - api
+    - actuator
+    - health
+    - prometheus
+    - admin
+  cache:
+    ttl: PT5M
+  idempotency:
+    retention: PT24H
+  expiration:
+    default-lifetime: P30D
+    max-lifetime: P90D
+  ratelimit:
+    enabled: true
+    trust-forwarded-headers: false
+    create:
+      limit: 30
+      window: PT1M
+    redirect:
+      limit: 300
+      window: PT1M
